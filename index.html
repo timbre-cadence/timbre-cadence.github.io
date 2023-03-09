@@ -65,7 +65,7 @@
 
                 <div class="container" style="max-width:850px; margin-top: 20px; margin-bottom: 40px">
                     <p style='line-height:1.3; font-size:large; text-align: justify'>
-                        Although recent zero-shot text-to-speech (TTS) models have shown high performance in terms of speech quality, the performance of speaker similarity is not up to par. Speaker similarity can be expressed in two different components: intra-speaker consistent component (timbre) and inter-utterance variate component (cadence). In this paper, we proposed a hierarchical timbre-cadence speaker encoder for TTS that improves speaker similarity by modeling these components. From a disentanglement point of view, we use a hierarchical structure which is more beneficial than applying separate models and additional losses. To model timbre, we give loss between timbre embedding and speaker ID-based speaker embedding. Also, to model cadence, we give VICReg to increase the variance of inter-utterance within a batch. Moreover, we propose an effective augmentation method, speaker mixing augmentation, which concatenates two short utterances of different speakers to make the zero-shot TTS model more robust.
+                        Although recent zero-shot text-to-speech (zs-TTS) models have shown high performance in terms of speech quality, speaker similarity is not up to par. Speaker similarity can be expressed in two different components: intra-speaker consistent component (timbre) and inter-utterance variate component (cadence). In this paper, we propose a timbre-cadence speaker encoder for zs-TTS that improves speaker similarity by modeling these components. To disentangle timbre and cadence more efficiently, we employ a hierarchical structure. The cadence embedding is first encoded with VICReg which enlarges the inter-utterance embedding within a batch. Next, timbre embedding is extracted after subtracting cadence embedding and using a loss between timbre embedding and speaker ID-based speaker embedding. Additionally, we propose an effective data augmentation called speaker mixing augmentation, where two short utterances from different speakers are concatenated for a more robust zs-TTS model.
                     </p>
                 </div>
             </div>
@@ -82,7 +82,7 @@
             </div>
 
             <div class='row' style='margin-top: 40px; margin-bottom: 10px;'>
-                <p class='h4'>Text1: It is very difficult even for men to break through such solid mass.</p>
+                <p class='h4'>Text1: The economic embargo against that country, and the general policy of the United States with regard to Cuba.</p>
             </div>
 
             <div class='row' style='margin-top: 5px; margin-bottom: 10px;'>
@@ -282,11 +282,11 @@
         <hr>
 
             <div class='row' style='margin-top: 40px; margin-bottom: 10px;'>
-                <p class='h4'>Text2: It is very difficult even for men to break through such solid mass.</p>
+                <p class='h4'>Text2: Some might be in abeyance, but they had never been repealed, and some were quite freshly imported upon the Statute Book.</p>
             </div>
 
             <div class='row' style='margin-top: 5px; margin-bottom: 10px;'>
-                <p class='h5 font-weight-normal '>Reference 1 of speaker 1</p>
+                <p class='h5 font-weight-normal '>Reference 1 of speaker 3</p>
             </div>
 
 			<table border="1" bordercolor="c8c8c8" width="900">
@@ -334,7 +334,7 @@
 			</table>
 
             <div class='row' style='margin-top: 40px; margin-bottom: 10px;'>
-                <p class='h5 font-weight-normal '>Reference 2 of speaker 1</p>
+                <p class='h5 font-weight-normal '>Reference 2 of speaker 3</p>
             </div>
 
 			<table border="1" bordercolor="c8c8c8" width="900">
@@ -382,7 +382,7 @@
 			</table>
 
             <div class='row' style='margin-top: 40px; margin-bottom: 10px;'>
-                <p class='h5 font-weight-normal '> Reference 1 of speaker 2</p>
+                <p class='h5 font-weight-normal '> Reference 1 of speaker 4</p>
             </div>
 
 			<table border="1" bordercolor="c8c8c8" width="900">
@@ -430,7 +430,7 @@
 			</table>
 
             <div class='row' style='margin-top: 40px; margin-bottom: 10px;'>
-                <p class='h5 font-weight-normal '> Reference 2 of speaker 2</p>
+                <p class='h5 font-weight-normal '> Reference 2 of speaker 4</p>
             </div>
 
 			<table border="1" bordercolor="c8c8c8" width="900">
@@ -508,9 +508,12 @@
             </div>
 
             <div class='row' style='margin-top: 5px; margin-bottom: 10px;'>
-                <p class='h5 font-weight-normal '>- META, EXTERN: same configure as original paper except META embedding dim (32).
+                <p class='h5 font-weight-normal '>- META, REF: same configure as original paper except embedding dim (32).
             </div>
 
+            <div class='row' style='margin-top: 5px; margin-bottom: 10px;'>
+                <p class='h5 font-weight-normal '>- EXTERN: use pre-trained model with 512 embedding dim.
+            </div>
 
         <hr>
 
